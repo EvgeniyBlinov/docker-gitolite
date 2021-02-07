@@ -1,0 +1,25 @@
+#  vim: set et fenc=utf-8 ff=unix sts=2 sw=2 ts=2
+version: "3"
+
+networks:
+  gitolite:
+    driver: ${NETWORKS_DRIVER:-bridge}
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+
+services:
+    gitolite:
+      build:
+        context: .
+        #args: []
+      environment:
+        - SSH_KEY_NAME=${SSH_KEY_NAME:-admin}
+        - SSH_KEY=${SSH_KEY}
+      volumes:
+        #- ./ssh:/etc/ssh/keys
+        - ./git:/var/lib/git
+      ports:
+        - "${GITOLITE_SSH_PORT:-22}:22"
+      networks:
+        - gitolite

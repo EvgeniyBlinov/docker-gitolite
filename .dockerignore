@@ -1,0 +1,10 @@
+.git
+Dockerfile
+LICENSE
+README.md
+docker-compose.yml
+git/
+ssh/
+tpl/
+Makefile
+ssh_config
